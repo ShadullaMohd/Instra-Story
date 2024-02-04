@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instra Story</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card{
+            width: 250px;
+            height: 400px;
+            border: 2px solid red;
+            margin-top: 150px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .storiyan{
+            /* width: 100%; */
+            height: 80px;
+            border-bottom: 2px solid salmon;
+            white-space: nowrap;
+            margin: 10px;
+            overflow-x: auto;
+            overflow-y: hidden;
+
+        }
+        .storiyan::-webkit-scrollbar{
+            display: none;
+        }
+        .story{
+            height: 70px;
+            width: 70px;
+            border: 2px solid red ;
+            border-radius: 50%;
+            
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .story img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+        }
+        .full-screen{
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            display: none;
+            object-fit: cover;
+            background-size: cover;
+            object-position: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="full-screen"></div>
+        <div class="storiyan">
+            
+            <div class="story"></div>
+            <div class="story"></div>
+            <div class="story"></div>
+            <div class="story"></div>
+        </div>
+    </div>
+    <script>
+       var arr = [
+            {dp:"https://images.pexels.com/photos/1382726/pexels-photo-1382726.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", story:"https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {dp:"https://images.pexels.com/photos/3756166/pexels-photo-3756166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", story:"https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {dp:"https://images.pexels.com/photos/3764119/pexels-photo-3764119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", story:"https://images.pexels.com/photos/2887767/pexels-photo-2887767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {dp:"https://images.pexels.com/photos/776450/pexels-photo-776450.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", story:"https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {dp:"https://images.pexels.com/photos/906002/pexels-photo-906002.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", story:"https://images.pexels.com/photos/2272854/pexels-photo-2272854.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+    ]
+     var clutter = ""
+    arr.forEach(function(elem,idx){
+        clutter +=`<div class="story">
+                <img id="${idx}" src="${elem.dp}" alt="">
+            </div>`
+    });
+
+    document.querySelector(".storiyan").innerHTML=clutter
+
+    var story = document.querySelector(".storiyan")
+
+    story.addEventListener("click",function(dets){
+        document.querySelector(".full-screen").style.display="block"
+        document.querySelector(".full-screen").style.backgroundImage = `url(${arr[dets.target.id].story})`
+        setTimeout(function(){
+            document.querySelector(".full-screen").style.display="none"
+        },3000)
+    })
+    </script>
+</body>
+</html>
